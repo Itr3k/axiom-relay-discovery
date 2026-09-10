@@ -24,6 +24,12 @@ The endpoint supports stateless POST requests. Its fixed tools cover capability 
 
 The broken example has **two operations, one error and two warnings**. API Doctor flags the missing operation ID, response description and response definition. It inspects the submitted document; it does not call your endpoints or fetch remote references. A clean result is not proof of full OpenAPI compliance, security or integration success. Remove secrets before submitting your own document.
 
+## Add the free Python tool to an agent
+
+[The Python adapter](examples/api_doctor_tool.py) exports `check_api_doctor` and the standard function-tool declaration `API_DOCTOR_TOOL`. It works as an ordinary HTTP tool alongside an x402 starter. The adapter uses Python 3.10+ and the single dependency pinned in [examples/requirements.txt](examples/requirements.txt).
+
+Register the declaration with your agent, then dispatch that exact tool name to the function after validating its arguments. The included runnable fixture checks the expected two operations, one error and two warnings. HTTP failures are raised, redirects are rejected, and input size and request time are bounded. This free call uses no wallet or payment headers. Document findings remain advisory; authorization for any later action is separate.
+
 ## Help shape it
 
 What is the smallest API-contract problem that has broken one of your agent integrations? Share a nonsensitive example in [the Hugging Face discussion](https://discuss.huggingface.co/t/axiom-relay-a-gradio-space-for-api-contract-checks-and-agent-service-discovery/180243) or open an issue here. Bug reports and practical integration feedback are welcome.
