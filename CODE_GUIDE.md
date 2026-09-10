@@ -22,6 +22,7 @@ The example OpenAPI object is public fixture data. API Doctor returns a summary 
 No environment variables are required. For maintainer reference, `node examples/health-check.mjs` and `node examples/mcp-smoke.mjs` verify the live interfaces. The workflow repeats both checks before publication. Registry metadata must be versioned for every new publication.
 
 ## Recent changes
+- 2026-09-10: Routed feedback directly to GitHub issues while the forum introduction awaits staff moderation.
 - 2026-09-10: Added and live-tested the free Python tool adapter following Pixel Office's confirmation that their x402 starter supports ordinary HTTP tools. The example returned two operations, one error and two warnings. It includes explicit failure handling and bounded input/time; the function handles no payment or execution authorization.
 - 2026-09-10: Official MCP Registry publication passed through GitHub OIDC; API readback confirmed version 1.0.0 active. Registry name: `io.github.Itr3k/axiom-relay-discovery`.
 - 2026-09-10: Both examples passed against production. MCP initialization listed ten tools and API Doctor returned the expected findings. Registry acceptance is tracked separately from a successful live connection.

@@ -32,6 +32,6 @@ Register the declaration with your agent, then dispatch that exact tool name to 
 
 ## Help shape it
 
-What is the smallest API-contract problem that has broken one of your agent integrations? Share a nonsensitive example in [the Hugging Face discussion](https://discuss.huggingface.co/t/axiom-relay-a-gradio-space-for-api-contract-checks-and-agent-service-discovery/180243) or open an issue here. Bug reports and practical integration feedback are welcome.
+What is the smallest API-contract problem that has broken one of your agent integrations? [Open an issue](https://github.com/Itr3k/axiom-relay-discovery/issues) with a nonsensitive example. Bug reports and practical integration feedback are welcome.
 
 [Website](https://axiomrelay.io/?utm_source=github&utm_medium=repository&utm_campaign=builder_launch_20260910) · [HTTP guide](https://axiomrelay.io/developers/api-health-check) · [Code guide](CODE_GUIDE.md)
