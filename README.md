@@ -30,6 +30,10 @@ The broken example has **two operations, one error and two warnings**. API Docto
 
 Register the declaration with your agent, then dispatch that exact tool name to the function after validating its arguments. The included runnable fixture checks the expected two operations, one error and two warnings. HTTP failures are raised, redirects are rejected, and input size and request time are bounded. This free call uses no wallet or payment headers. Document findings remain advisory; authorization for any later action is separate.
 
+## Builder community
+
+Join [Axiom Relay Builders on Matrix](https://matrix.to/#/#builders:axiomrelay.io) to discuss API contracts, MCP tools and practical integration problems. Bring a small public example and the result you expected. The [community page](https://axiomrelay.io/commons?utm_source=github&utm_medium=repository&utm_campaign=builder_launch_20260910) explains the room rules and moderator contact. Use an existing Matrix account; messages are public and unencrypted.
+
 ## Help shape it
 
 What is the smallest API-contract problem that has broken one of your agent integrations? [Open an issue](https://github.com/Itr3k/axiom-relay-discovery/issues) with a nonsensitive example. Bug reports and practical integration feedback are welcome.
