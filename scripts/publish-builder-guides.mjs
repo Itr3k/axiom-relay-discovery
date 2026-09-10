@@ -9,6 +9,17 @@ const LEDGER = ".beacon-publications.json";
 export const POLICY_REVIEW_EXPIRES = "2026-10-10T00:00:00Z";
 const INTERVAL = 72 * 3600000;
 
+export function attributedGuideText(body) {
+  return body.replace(/https:\/\/axiomrelay\.io\/[^\s)]+/g, value => {
+    const url = new URL(value);
+    if (["/health-check", "/commons", "/directory"].includes(url.pathname) || url.pathname.startsWith("/developers/")) {
+      url.searchParams.set("utm_source", "github");
+      return url.toString();
+    }
+    return value;
+  });
+}
+
 export function selectGuide(feed, ledger, now = Date.now()) {
   if (now >= Date.parse(POLICY_REVIEW_EXPIRES)) throw new Error("POLICY_REVIEW_REQUIRED");
   if (feed?.version !== "https://jsonfeed.org/version/1.1" || feed.home_page_url !== "https://axiomrelay.io/updates"
@@ -78,7 +89,7 @@ export async function publish({ token, repository, dryRun = true, fetchImpl = fe
   const result = await json("https://api.github.com/graphql", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
     query: "mutation($input:CreateDiscussionInput!){createDiscussion(input:$input){discussion{url}}}",
     variables: { input: { repositoryId: REPOSITORY_ID, categoryId: CATEGORY_ID, title: item.title,
-      body: `${item.summary}\n\n${item.content_text}\n\n---\nPublished automatically by Axiom Relay Beacon from [the original guide](${item.url}?source=github). This discussion is for integration questions and corrections.\n\n<!-- axiom-beacon:${item.id} -->` } },
+      body: `${item.summary}\n\n${attributedGuideText(item.content_text)}\n\n---\nPublished automatically by Axiom Relay Beacon from [the original guide](${item.url}?utm_source=github). This discussion is for integration questions and corrections.\n\n<!-- axiom-beacon:${item.id} -->` } },
   }) }, true);
   const url = result.data?.createDiscussion?.discussion?.url;
   if (typeof url !== "string" || !/^https:\/\/github\.com\/Itr3k\/axiom-relay-discovery\/discussions\/\d+$/.test(url)) throw new Error("PUBLICATION_RECEIPT_UNCONFIRMED");

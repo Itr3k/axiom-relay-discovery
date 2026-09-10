@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { test } from "node:test";
-import { selectGuide, publish, REPOSITORY } from "../scripts/publish-builder-guides.mjs";
+import { selectGuide, publish, REPOSITORY, attributedGuideText } from "../scripts/publish-builder-guides.mjs";
 
 const now = Date.parse("2026-09-12T12:00:00Z");
+test("human referral links retain channel attribution without modifying machine endpoints", () => {
+  assert.equal(attributedGuideText("https://axiomrelay.io/health-check https://axiomrelay.io/mcp/discovery https://axiomrelay.io/api/v1/agents/api-doctor"), "https://axiomrelay.io/health-check?utm_source=github https://axiomrelay.io/mcp/discovery https://axiomrelay.io/api/v1/agents/api-doctor");
+});
 function fixtures() {
   const item = { id: "test-guide", title: "Check an API document", summary: "A practical guide for integration builders.", content_text: "Use a small example to inspect an API document before integrating a service. The check is advisory. https://axiomrelay.io/health-check", date_published: "2026-09-10T12:00:00Z", url: "https://axiomrelay.io/updates/test-guide", _axiom: { source: "source-controlled-builder-guide" } };
   item._axiom.content_sha256 = createHash("sha256").update(JSON.stringify([item.title,item.summary,item.content_text])).digest("hex");
