@@ -1,0 +1,34 @@
+name: Publish builder guides
+on:
+  schedule:
+    - cron: '41 17 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Check the next guide without publishing
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: beacon-builder-publications
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.repository == 'Itr3k/axiom-relay-discovery'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      discussions: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Test publication boundaries
+        run: node --test tests/publish-builder-guides.test.mjs
+      - name: Publish one eligible guide
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          BEACON_DRY_RUN: ${{ inputs.dry_run == true && 'true' || 'false' }}
+        run: node scripts/publish-builder-guides.mjs

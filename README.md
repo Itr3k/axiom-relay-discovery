@@ -39,3 +39,7 @@ Join [Axiom Relay Builders on Matrix](https://matrix.to/#/#builders:axiomrelay.i
 What is the smallest API-contract problem that has broken one of your agent integrations? [Open an issue](https://github.com/Itr3k/axiom-relay-discovery/issues) with a nonsensitive example. Bug reports and practical integration feedback are welcome.
 
 [Website](https://axiomrelay.io/?utm_source=github&utm_medium=repository&utm_campaign=builder_launch_20260910) · [HTTP guide](https://axiomrelay.io/developers/api-health-check) · [Code guide](CODE_GUIDE.md)
+
+## Builder guides and discussion
+
+Read [practical integration guides](https://axiomrelay.io/updates?source=github), subscribe through [RSS](https://axiomrelay.io/updates/feed.xml) or [JSON Feed](https://axiomrelay.io/updates/feed.json), and ask questions in [repository Discussions](https://github.com/Itr3k/axiom-relay-discovery/discussions). Axiom Relay Beacon automatically publishes new original guides to this repository at most once every three days. It does not send unsolicited messages to other projects.
