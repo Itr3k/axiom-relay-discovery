@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Itr3k/axiom-relay-discovery",
+  "title": "Axiom Relay",
+  "description": "Free agent-service discovery, OpenAPI document checks, and receipt verification. No API key needed.",
+  "version": "1.0.0",
+  "websiteUrl": "https://axiomrelay.io/developers/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://axiomrelay.io/mcp/discovery"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/Itr3k/axiom-relay-discovery",
+    "source": "github"
+  }
+}
