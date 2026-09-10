@@ -21,4 +21,5 @@ The example OpenAPI object is public fixture data. API Doctor returns a summary 
 No environment variables are required. For maintainer reference, `node examples/health-check.mjs` and `node examples/mcp-smoke.mjs` verify the live interfaces. The workflow repeats both checks before publication. Registry metadata must be versioned for every new publication.
 
 ## Recent changes
+- 2026-09-10: Both examples passed against production. MCP initialization listed ten tools and API Doctor returned the expected findings. Registry acceptance is tracked separately from a successful live connection.
 - 2026-09-10: Prepared the dedicated public discovery repository, two dependency-free examples and a manually triggered registry publication workflow. Production and registry acceptance must be verified before describing this as published.
