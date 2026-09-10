@@ -21,7 +21,6 @@ export function attributedGuideText(body) {
 }
 
 export function selectGuide(feed, ledger, now = Date.now()) {
-  if (now >= Date.parse(POLICY_REVIEW_EXPIRES)) throw new Error("POLICY_REVIEW_REQUIRED");
   if (feed?.version !== "https://jsonfeed.org/version/1.1" || feed.home_page_url !== "https://axiomrelay.io/updates"
     || feed._axiom?.policy !== "owned-channels-v1" || typeof feed._axiom.publishing_enabled !== "boolean" || !Array.isArray(feed.items) || feed.items.length > 100) throw new Error("INVALID_FEED");
   if (ledger?.version !== 1 || !ledger.publications || Array.isArray(ledger.publications) || typeof ledger.publications !== "object") throw new Error("INVALID_LEDGER");
@@ -36,14 +35,15 @@ export function selectGuide(feed, ledger, now = Date.now()) {
       || typeof item.title !== "string" || item.title.length < 5 || item.title.length > 180 || /[\r\n<>]/.test(item.title)
       || typeof item.summary !== "string" || item.summary.length > 700 || typeof item.content_text !== "string"
       || item.content_text.length < 100 || item.content_text.length > 16000 || item._axiom?.source !== "source-controlled-builder-guide"
-      || !Number.isFinite(Date.parse(item.date_published)) || Date.parse(item.date_published)>now
-      || now-Date.parse(item.date_published)>90*86400000) throw new Error("INVALID_GUIDE");
+      || !Number.isFinite(Date.parse(item.date_published)) || Date.parse(item.date_published)>now) throw new Error("INVALID_GUIDE");
     const digest = createHash("sha256").update(JSON.stringify([item.title,item.summary,item.content_text])).digest("hex");
     if (digest !== item._axiom.content_sha256) throw new Error("GUIDE_DIGEST_MISMATCH");
     if (ledger.publications[item.id]) {
       if (ledger.publications[item.id].contentSha256 !== digest) throw new Error("PUBLISHED_CONTENT_CHANGED");
       continue;
     }
+    if (now-Date.parse(item.date_published)>90*86400000) continue;
+    if (now >= Date.parse(POLICY_REVIEW_EXPIRES)) throw new Error("POLICY_REVIEW_REQUIRED");
     const text = `${item.title}\n${item.summary}\n${item.content_text}`;
     if (/@[a-z0-9_]/i.test(text) || /<[^>]+>/.test(text)) throw new Error("GUIDE_MENTIONS_OR_HTML");
     for (const match of text.matchAll(/https?:\/\/[^\s)]+/g)) {

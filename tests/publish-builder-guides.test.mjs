@@ -22,6 +22,7 @@ test("only new, intact, permitted guide content qualifies", () => {
   assert.throws(() => selectGuide(feed,{ version: 1, publications: { old: { state: "RESERVED" } } },now), /UNRESOLVED/);
   ledger.publications[item.id] = { state: "PUBLISHED", contentSha256: item._axiom.content_sha256, reservedAt: "2026-09-08T12:00:00Z", url: `https://github.com/${REPOSITORY}/discussions/1` };
   assert.equal(selectGuide(feed,ledger,now), null, "A previously published guide is never selected again, even after its discussion is removed");
+  assert.equal(selectGuide(feed,ledger,Date.parse("2026-10-11")), null, "An exhausted queue stays idle without repeated policy-review failures");
   const older = { ...ledger, publications: { other: { ...ledger.publications[item.id], reservedAt: new Date(now-1000).toISOString() } } };
   assert.equal(selectGuide(feed,older,now), null, "No more than one publication per 72 hours");
 });
