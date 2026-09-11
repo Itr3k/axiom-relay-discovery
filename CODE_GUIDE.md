@@ -7,6 +7,7 @@ This public repository contains Axiom Relay connection metadata, free API/MCP ex
 The original Node.js 22+ HTTP examples use native fetch with no dependencies; the Python 3.10+ API adapter uses HTTPX 0.28.1. The MER SDK requires Node.js 20+ or Python 3.10+ with cryptography, and performs no network requests. TypeScript builds to ESM with type declarations. The x402 example uses the official extensions package 2.25.0. There is no database, real payment operation or hosted platform implementation in this repository.
 
 ## Files and features
+- `MER_QUICKSTART.md`, `examples/mer-verify.mjs` and `examples/mer_verify.py`: direct installation from the published release and offline fixture/tampering verification in both languages. No account or wallet is needed; fixture success is not adoption. Added September 10, 2026.
 - `packages/mer/README.md`: format, explicit issuer trust, compatibility, license and distribution scope.
 - `packages/mer/typescript/src/{index,core,integrity,time,cli}.ts`: safe canonicalization, explicit-trust signature verification, economic/key lifecycle/correction checks, issuer-owned signing callback and offline CLI.
 - `packages/mer/python/src/axiom_mer`: matching Python APIs and CLI, with the same public schema and signed test vectors.

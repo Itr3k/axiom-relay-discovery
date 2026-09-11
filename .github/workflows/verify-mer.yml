@@ -1,9 +1,9 @@
 name: Verify MER developer kits
 on:
   push:
-    paths: ["packages/mer/**", "tests/mer-kit-*", ".github/workflows/verify-mer.yml"]
+    paths: ["packages/mer/**", "tests/mer-kit-*", "examples/mer*", "MER_QUICKSTART.md", ".github/workflows/verify-mer.yml"]
   pull_request:
-    paths: ["packages/mer/**", "tests/mer-kit-*", ".github/workflows/verify-mer.yml"]
+    paths: ["packages/mer/**", "tests/mer-kit-*", "examples/mer*", "MER_QUICKSTART.md", ".github/workflows/verify-mer.yml"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,6 +29,13 @@ jobs:
           packages/mer/.venv/bin/python -m unittest discover -s packages/mer/python/tests
       - name: Verify signatures and encoding across languages
         run: node tests/mer-kit-cross-language.test.mjs
+      - name: Verify installed-package quickstarts
+        run: |
+          npm pack ./packages/mer/typescript --pack-destination /tmp
+          npm install --ignore-scripts --prefix /tmp/mer-quickstart /tmp/axiom-relay-mer-0.1.0.tgz
+          cp examples/mer-verify.mjs /tmp/mer-quickstart/
+          node /tmp/mer-quickstart/mer-verify.mjs
+          packages/mer/.venv/bin/python examples/mer_verify.py
       - name: Verify the official x402 offer and receipt example
         run: |
           npm ci --prefix packages/mer/examples/x402 --ignore-scripts
