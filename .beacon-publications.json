@@ -1,4 +1,10 @@
 {
   "version": 1,
-  "publications": {}
+  "publications": {
+    "free-openapi-check-before-agent-integration": {
+      "state": "RESERVED",
+      "contentSha256": "f900365b54b3aeee0872a4d4b4e551c779c403db44766dc01cac128bd1e019de",
+      "reservedAt": "2026-09-11T00:01:28.042Z"
+    }
+  }
 }
