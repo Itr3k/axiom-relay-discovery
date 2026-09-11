@@ -1,0 +1,981 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiomrelay.io/schemas/mer/receipt-0.1.schema.json",
+  "title": "Machine Economic Receipt Draft 0.1 envelope",
+  "description": "Portable receipt envelope linking a scoped economic lifecycle event to exact economics, evidence hashes, privacy mode, lineage, and an environment-bound Ed25519 proof.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt",
+    "proof"
+  ],
+  "properties": {
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "specVersion",
+        "receiptId",
+        "issuedAt",
+        "issuer",
+        "subject",
+        "event",
+        "economics",
+        "evidence",
+        "privacy",
+        "lineage"
+      ],
+      "properties": {
+        "specVersion": {
+          "const": "0.1.0-draft"
+        },
+        "receiptId": {
+          "type": "string",
+          "pattern": "^mer_[A-Za-z0-9_-]{3,120}$"
+        },
+        "issuedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "issuer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "keyId"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9.-]{2,120}$"
+            },
+            "keyId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]{3,160}$"
+            }
+          }
+        },
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "serviceId",
+            "serviceVersion",
+            "providerId"
+          ],
+          "properties": {
+            "serviceId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]{3,160}$"
+            },
+            "serviceVersion": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]{1,80}$"
+            },
+            "providerId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]{2,120}$"
+            }
+          }
+        },
+        "event": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "status",
+            "occurredAt",
+            "sequence"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "intent",
+                "quote",
+                "authorization",
+                "execution",
+                "settlement",
+                "fulfillment",
+                "aftercare",
+                "correction",
+                "refund",
+                "reversal",
+                "dispute",
+                "replacement",
+                "revocation"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{1,63}$"
+            },
+            "occurredAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "economics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "payerRole",
+            "principal",
+            "axiomRelayFee",
+            "totalAuthorized"
+          ],
+          "properties": {
+            "payerRole": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{1,63}$"
+            },
+            "principal": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency",
+                "recipientRole"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                },
+                "recipientRole": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{1,63}$"
+                }
+              }
+            },
+            "axiomRelayFee": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency",
+                "status"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                },
+                "status": {
+                  "enum": [
+                    "charged",
+                    "waived_first_party",
+                    "sponsored"
+                  ]
+                }
+              }
+            },
+            "otherFees": {
+              "type": "array",
+              "maxItems": 32,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "amount",
+                  "currency"
+                ],
+                "properties": {
+                  "amount": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z0-9]{2,12}$"
+                  },
+                  "network": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9-]{1,32}$"
+                  }
+                }
+              }
+            },
+            "totalAuthorized": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "settlement": {
+              "enum": [
+                "NOT_APPLICABLE",
+                "SIMULATED",
+                "SETTLED",
+                "DISPUTED",
+                "PARTIALLY_REFUNDED",
+                "PARTIALLY_REVERSED",
+                "REFUNDED",
+                "REVERSED"
+              ]
+            },
+            "paymentFunding": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "model",
+                    "processor",
+                    "environment",
+                    "chargedAmount",
+                    "servicePrice",
+                    "serviceCreditGranted",
+                    "creditAccountId",
+                    "transferable",
+                    "cashRedeemable"
+                  ],
+                  "properties": {
+                    "model": {
+                      "const": "STRIPE_MINIMUM_WITH_SERVICE_CREDIT"
+                    },
+                    "processor": {
+                      "const": "stripe"
+                    },
+                    "environment": {
+                      "enum": [
+                        "TEST",
+                        "PRODUCTION"
+                      ]
+                    },
+                    "chargedAmount": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z0-9]{2,12}$"
+                        },
+                        "network": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-]{1,32}$"
+                        }
+                      }
+                    },
+                    "servicePrice": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z0-9]{2,12}$"
+                        },
+                        "network": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-]{1,32}$"
+                        }
+                      }
+                    },
+                    "serviceCreditGranted": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z0-9]{2,12}$"
+                        },
+                        "network": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-]{1,32}$"
+                        }
+                      }
+                    },
+                    "creditAccountId": {
+                      "type": "string",
+                      "pattern": "^credit_[a-f0-9]{32}$"
+                    },
+                    "transferable": {
+                      "const": false
+                    },
+                    "cashRedeemable": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "model",
+                    "provider",
+                    "environment",
+                    "debitedAmount",
+                    "creditAccountId",
+                    "transferable",
+                    "cashRedeemable"
+                  ],
+                  "properties": {
+                    "model": {
+                      "const": "SERVICE_CREDIT_REDEMPTION"
+                    },
+                    "provider": {
+                      "const": "axiom"
+                    },
+                    "environment": {
+                      "enum": [
+                        "TEST",
+                        "PRODUCTION"
+                      ]
+                    },
+                    "debitedAmount": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z0-9]{2,12}$"
+                        },
+                        "network": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-]{1,32}$"
+                        }
+                      }
+                    },
+                    "creditAccountId": {
+                      "type": "string",
+                      "pattern": "^credit_[a-f0-9]{32}$"
+                    },
+                    "transferable": {
+                      "const": false
+                    },
+                    "cashRedeemable": {
+                      "const": false
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "commerce": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "merchantRef",
+            "merchantType",
+            "pricing",
+            "grossEconomicVolume",
+            "providerPrincipal",
+            "axiomRevenue",
+            "settlement",
+            "activityClass",
+            "realMoneyMoved"
+          ],
+          "properties": {
+            "orderId": {
+              "type": "string",
+              "pattern": "^ord_[a-f0-9]{32}$"
+            },
+            "quoteId": {
+              "type": "string",
+              "pattern": "^q_[a-f0-9]{32}$"
+            },
+            "expectationId": {
+              "type": "string",
+              "pattern": "^expect_[a-f0-9]{32}$"
+            },
+            "executionId": {
+              "type": "string",
+              "pattern": "^job_[a-f0-9]{32}$"
+            },
+            "merchantRef": {
+              "type": "string",
+              "pattern": "^merchant\\.[a-z0-9._-]{2,120}$"
+            },
+            "merchantType": {
+              "enum": [
+                "AXIOM_FIRST_PARTY",
+                "THIRD_PARTY_PROVIDER",
+                "ENTERPRISE_TENANT",
+                "AGENT_PROVIDER"
+              ]
+            },
+            "pricing": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "grossEconomicVolume": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "providerPrincipal": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "axiomRevenue": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "settlement": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "asset",
+                "network",
+                "decimals",
+                "profileRef",
+                "methodRef",
+                "recipient",
+                "paymentReference",
+                "finality"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "asset": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9:-]{2,40}$"
+                },
+                "decimals": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "profileRef": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9._-]{3,120}$"
+                },
+                "methodRef": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9._-]{3,160}$"
+                },
+                "recipient": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9:._-]{3,200}$"
+                },
+                "paymentReference": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9:._-]{3,200}$"
+                },
+                "finality": {
+                  "enum": [
+                    "PENDING",
+                    "CONFIRMED",
+                    "PARTIALLY_REVERSED",
+                    "REVERSED"
+                  ]
+                }
+              }
+            },
+            "activityClass": {
+              "enum": [
+                "INTERNAL_TEST",
+                "QUALIFICATION",
+                "FIRST_PARTY_PRODUCTION",
+                "EXTERNAL"
+              ]
+            },
+            "realMoneyMoved": {
+              "type": "boolean"
+            },
+            "commercialPolicy": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "termsPolicyRef",
+                "refundPolicyRef",
+                "acceptedAt"
+              ],
+              "properties": {
+                "termsPolicyRef": {
+                  "type": "string",
+                  "pattern": "^terms\\.axiom\\.[A-Za-z0-9._-]{3,160}$"
+                },
+                "refundPolicyRef": {
+                  "type": "string",
+                  "pattern": "^refund\\.axiom\\.[A-Za-z0-9._-]{3,160}$"
+                },
+                "acceptedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        },
+        "correction": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "reasonCode",
+            "rootReceiptId",
+            "predecessorReceiptId",
+            "predecessorDigest",
+            "amount",
+            "scope",
+            "resolution"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "correction",
+                "refund",
+                "reversal",
+                "dispute",
+                "replacement",
+                "revocation"
+              ]
+            },
+            "reasonCode": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9_]{2,95}$"
+            },
+            "rootReceiptId": {
+              "type": "string",
+              "pattern": "^mer_[A-Za-z0-9_-]{3,120}$"
+            },
+            "predecessorReceiptId": {
+              "type": "string",
+              "pattern": "^mer_[A-Za-z0-9_-]{3,120}$"
+            },
+            "predecessorDigest": {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            "amount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "cumulativeAdjustedAmount": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                },
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9]{2,12}$"
+                },
+                "network": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]{1,32}$"
+                }
+              }
+            },
+            "scope": {
+              "enum": [
+                "PARTIAL",
+                "FULL",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "resolution": {
+              "enum": [
+                "OPEN",
+                "APPLIED",
+                "RESOLVED",
+                "SUPERSEDED",
+                "REJECTED"
+              ]
+            },
+            "providerReference": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{3,200}$"
+            },
+            "source": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "correctionId",
+                    "lotId",
+                    "allocationId",
+                    "fundingReversalEventId"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "SERVICE_CREDIT_FUNDING_REVERSAL"
+                    },
+                    "correctionId": {
+                      "type": "string",
+                      "pattern": "^crcor_[a-f0-9]{32}$"
+                    },
+                    "lotId": {
+                      "type": "string",
+                      "pattern": "^lot_[a-f0-9]{32}$"
+                    },
+                    "allocationId": {
+                      "type": "string",
+                      "pattern": "^alloc_[a-f0-9]{32}$"
+                    },
+                    "fundingReversalEventId": {
+                      "type": "string",
+                      "pattern": "^crevt_[a-f0-9]{32}$"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "restorationId",
+                    "correctionId",
+                    "lotId",
+                    "allocationId",
+                    "fundingRestorationEventId"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "SERVICE_CREDIT_FUNDING_RESTORATION"
+                    },
+                    "restorationId": {
+                      "type": "string",
+                      "pattern": "^crrst_[a-f0-9]{32}$"
+                    },
+                    "correctionId": {
+                      "type": "string",
+                      "pattern": "^crcor_[a-f0-9]{32}$"
+                    },
+                    "lotId": {
+                      "type": "string",
+                      "pattern": "^lot_[a-f0-9]{32}$"
+                    },
+                    "allocationId": {
+                      "type": "string",
+                      "pattern": "^alloc_[a-f0-9]{32}$"
+                    },
+                    "fundingRestorationEventId": {
+                      "type": "string",
+                      "pattern": "^crevt_[a-f0-9]{32}$"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "queueId",
+                    "adjustmentId",
+                    "providerEventId",
+                    "providerEventType",
+                    "rawPayloadHash",
+                    "economicDirection",
+                    "sourceAmount"
+                  ],
+                  "properties": {
+                    "type": {
+                      "const": "STRIPE_PAYMENT_ADJUSTMENT"
+                    },
+                    "queueId": {
+                      "type": "string",
+                      "pattern": "^pmlq_[a-f0-9]{32}$"
+                    },
+                    "adjustmentId": {
+                      "type": "string",
+                      "pattern": "^adj_[a-f0-9]{32}$"
+                    },
+                    "providerEventId": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9._:-]{3,255}$"
+                    },
+                    "providerEventType": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9._]{3,120}$"
+                    },
+                    "rawPayloadHash": {
+                      "type": "string",
+                      "pattern": "^sha256:[a-f0-9]{64}$"
+                    },
+                    "economicDirection": {
+                      "enum": [
+                        "DEBIT",
+                        "CREDIT"
+                      ]
+                    },
+                    "sourceAmount": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,18})?$"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z0-9]{2,12}$"
+                        },
+                        "network": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-]{1,32}$"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "inputHash",
+            "resultHash"
+          ],
+          "properties": {
+            "inputHash": {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            "resultHash": {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            }
+          }
+        },
+        "privacy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intentMode"
+          ],
+          "properties": {
+            "intentMode": {
+              "enum": [
+                "public_synthetic",
+                "hash_only",
+                "selective",
+                "encrypted",
+                "private_managed"
+              ]
+            }
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "previousEventIds"
+          ],
+          "properties": {
+            "previousEventIds": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 32,
+              "items": {
+                "type": "string",
+                "pattern": "^mer_[A-Za-z0-9_-]{3,120}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "cryptosuite",
+        "created",
+        "verificationMethod",
+        "proofValue"
+      ],
+      "properties": {
+        "type": {
+          "const": "DataIntegrityProof"
+        },
+        "cryptosuite": {
+          "const": "eddsa-jcs-2022"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "verificationMethod": {
+          "type": "string",
+          "format": "uri"
+        },
+        "proofValue": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{86}$"
+        }
+      }
+    }
+  }
+}

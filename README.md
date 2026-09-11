@@ -4,6 +4,14 @@
 
 Axiom Relay offers free service discovery, OpenAPI document checks, Concierge guidance and receipt-envelope verification.
 
+## Build with MER
+
+**Create and verify Machine Economic Receipts with your own keys.** The free [MER developer kits](packages/mer) provide TypeScript and Python APIs for offline signature verification, exact economics, issuer key history and correction chains. They work without an Axiom account, network request or Axiom signing service.
+
+Get the installable Node package, Python wheel and checksums from the [MER 0.1.0 release](https://github.com/Itr3k/axiom-relay-discovery/releases/tag/mer-v0.1.0). The focused SDK, schema and fixtures are MIT-licensed for commercial use; Axiom's hosted platform is separate. The format remains MER Draft 0.1. npm and PyPI publication, x402 activation and directory listings have separate status.
+
+The [local x402 example](packages/mer/examples/x402) verifies x402's existing signed offers and receipts and binds that evidence into an independently issued MER. It uses ephemeral test keys and moves no money. Try it in your own integration and share a small, nonsensitive issue or pull request describing what worked or what is missing.
+
 [Try the free API Health Check](https://axiomrelay.io/health-check?utm_source=github&utm_medium=repository&utm_campaign=builder_launch_20260910) · [Open the Hugging Face demo](https://huggingface.co/spaces/Elevated-Ai-io/axiom-relay) · [Read the connection guide](https://axiomrelay.io/developers/mcp)
 
 ## Connect with MCP

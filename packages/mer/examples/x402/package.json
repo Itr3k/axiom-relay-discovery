@@ -1,0 +1,10 @@
+{
+  "name": "axiom-mer-x402-local-example",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node example.mjs" },
+  "dependencies": {
+    "@axiom-relay/mer": "file:../../typescript",
+    "@x402/extensions": "2.25.0"
+  }
+}

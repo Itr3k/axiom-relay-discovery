@@ -1,0 +1,64 @@
+{
+  "receipt": {
+    "specVersion": "0.1.0-draft",
+    "receiptId": "mer_test_fulfillment_001",
+    "issuedAt": "2026-08-27T00:00:00.000Z",
+    "issuer": {
+      "id": "axiom-sandbox",
+      "keyId": "axiom-sandbox-ed25519-2026-08"
+    },
+    "subject": {
+      "serviceId": "axiom.one-cent-proof",
+      "serviceVersion": "1.0.0-beta",
+      "providerId": "axiom"
+    },
+    "event": {
+      "type": "fulfillment",
+      "status": "fulfilled",
+      "occurredAt": "2026-08-27T00:00:00.000Z",
+      "sequence": 6
+    },
+    "economics": {
+      "payerRole": "requester",
+      "principal": {
+        "amount": "0.01",
+        "currency": "USDC",
+        "network": "base",
+        "recipientRole": "provider"
+      },
+      "axiomRelayFee": {
+        "amount": "0.00",
+        "currency": "USDC",
+        "status": "waived_first_party"
+      },
+      "totalAuthorized": {
+        "amount": "0.01",
+        "currency": "USDC",
+        "network": "base"
+      }
+    },
+    "evidence": {
+      "inputHash": "sha256:5d9b9f1cbb713f400e04e829b3a009ca52b4cd5d75a7659a1a261a1a9864969f",
+      "resultHash": "sha256:2b81f3d97755ca3f17cf1e23023f583bdf1b0a1bd96953907c7b9f36e14a7dbe"
+    },
+    "privacy": {
+      "intentMode": "hash_only"
+    },
+    "lineage": {
+      "previousEventIds": [
+        "mer_test_intent_001",
+        "mer_test_quote_001",
+        "mer_test_authorization_001",
+        "mer_test_execution_001",
+        "mer_test_settlement_001"
+      ]
+    }
+  },
+  "proof": {
+    "type": "DataIntegrityProof",
+    "cryptosuite": "eddsa-jcs-2022",
+    "created": "2026-08-27T00:00:00.000Z",
+    "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-ed25519-2026-08",
+    "proofValue": "ynCbRRacI0oAk9BrHqhrLKIONmxRWfiYXJsBsk04sVRRJgFxPEvvlqjqis12HFOFqyfP5Z2VAjtJxM6v5k22Cw"
+  }
+}

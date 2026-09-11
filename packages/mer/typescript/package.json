@@ -1,0 +1,18 @@
+{
+  "name": "@axiom-relay/mer",
+  "version": "0.1.0",
+  "description": "Portable Machine Economic Receipt signing and explicit-trust verification for MER Draft 0.1",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" }, "./schema": "./data/receipt-0.1.schema.json", "./vectors": "./data/vectors.json" },
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "data", "README.md", "LICENSE"],
+  "bin": { "axiom-mer": "./dist/cli.js" },
+  "scripts": { "build": "tsc -p tsconfig.json", "test": "node --test tests/*.test.mjs", "prepack": "npm run build" },
+  "devDependencies": { "@types/node": "20.19.43", "typescript": "5.9.3" },
+  "publishConfig": { "access": "public", "provenance": true },
+  "homepage": "https://axiomrelay.io/developers/mer",
+  "repository": { "type": "git", "url": "https://github.com/Itr3k/axiom-relay-discovery.git", "directory": "packages/mer/typescript" },
+  "bugs": { "url": "https://github.com/Itr3k/axiom-relay-discovery/issues" }
+}

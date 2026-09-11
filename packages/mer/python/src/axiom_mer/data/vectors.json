@@ -1,0 +1,2176 @@
+{
+  "contractVersion": "2026-09-02.mer-draft-0.1-integrity-3",
+  "vectors": [
+    {
+      "id": "legacy-fulfillment",
+      "description": "Previously published signed MER remains verifiable.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_test_fulfillment_001",
+          "issuedAt": "2026-08-27T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-ed25519-2026-08"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "fulfilled",
+            "occurredAt": "2026-08-27T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USDC",
+              "network": "base",
+              "recipientRole": "provider"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USDC",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USDC",
+              "network": "base"
+            }
+          },
+          "evidence": {
+            "inputHash": "sha256:5d9b9f1cbb713f400e04e829b3a009ca52b4cd5d75a7659a1a261a1a9864969f",
+            "resultHash": "sha256:2b81f3d97755ca3f17cf1e23023f583bdf1b0a1bd96953907c7b9f36e14a7dbe"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_test_intent_001",
+              "mer_test_quote_001",
+              "mer_test_authorization_001",
+              "mer_test_execution_001",
+              "mer_test_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-08-27T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-ed25519-2026-08",
+          "proofValue": "ynCbRRacI0oAk9BrHqhrLKIONmxRWfiYXJsBsk04sVRRJgFxPEvvlqjqis12HFOFqyfP5Z2VAjtJxM6v5k22Cw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-ed25519-2026-08",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-ed25519-2026-08",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "XKLEHhDvcljPTEV735BKBP0Mi8tW2qRTIbaL-M3FTXQ",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-ed25519-2026-08",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-08-27T00:00:00.000Z",
+              "recordedAt": "2026-08-27T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": true,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:1011175011c0c962247553bd44eb1bf647f196b1a67c3516832f9ff0f0953fa8",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": []
+      }
+    },
+    {
+      "id": "valid",
+      "description": "Valid signed receipt with active key and consistent economics.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": true,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": []
+      }
+    },
+    {
+      "id": "invalid-signature",
+      "description": "Receipt content is intact but the Ed25519 proof value is invalid.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4BA"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": false,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "SIGNATURE_INVALID"
+        ]
+      }
+    },
+    {
+      "id": "proof-created-tamper",
+      "description": "Signature remains mathematically valid but proof.created no longer matches signed issuedAt.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2099-01-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": true,
+          "proofBinding": false,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "PROOF_CREATED_NOT_BOUND"
+        ]
+      }
+    },
+    {
+      "id": "future-proof",
+      "description": "Valid signature over a receipt whose proof time is outside the accepted future clock skew.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_future_001",
+          "issuedAt": "2099-01-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2099-01-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2099-01-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "R_aMLHjRwRzjPioQV4eeQRoYzPteZxfTz2BNXg0_f4gLtdvylgz-wLAhKg0wTSocmZnB_wS9YvLtZBqpTTAuAg"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:870d9bb7c3b711c9c5cce6743f595b39a02d44fb045752850314754b7226ebfa",
+          "keyLifecycle": true,
+          "proofBinding": false,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "PROOF_CREATED_IN_FUTURE"
+        ]
+      }
+    },
+    {
+      "id": "key-not-yet-effective",
+      "description": "Valid signature created before the key activation effective time.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-02T00:00:00.000Z",
+              "recordedAt": "2026-09-02T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": false,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "KEY_NOT_YET_ACTIVE"
+        ]
+      }
+    },
+    {
+      "id": "rotated-key-after-effective-time",
+      "description": "Valid signature created at or after the old key rotation effective time.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            },
+            {
+              "status": "ROTATED",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": "axiom-sandbox-integrity-successor-2026-09"
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": false,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "KEY_NOT_ACTIVE_AT_PROOF"
+        ]
+      }
+    },
+    {
+      "id": "revoked-key",
+      "description": "Valid signature issued within the key's append-only revoked interval.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            },
+            {
+              "status": "REVOKED",
+              "effectiveAt": "2026-09-02T00:00:00.000Z",
+              "recordedAt": "2026-09-02T00:00:00.000Z",
+              "invalidFrom": "2026-09-01T00:00:00.000Z",
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": false,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "KEY_REVOKED_AT_PROOF"
+        ]
+      }
+    },
+    {
+      "id": "expired-retired-key",
+      "description": "Valid signature created after the signing key retired and its signing interval expired.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-08-01T00:00:00.000Z",
+              "recordedAt": "2026-08-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            },
+            {
+              "status": "RETIRED",
+              "effectiveAt": "2026-08-31T23:59:59.000Z",
+              "recordedAt": "2026-08-31T23:59:59.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": false,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "KEY_NOT_ACTIVE_AT_PROOF"
+        ]
+      }
+    },
+    {
+      "id": "compromised-key",
+      "description": "Valid signature falls within an emergency key-compromise invalidity interval.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            },
+            {
+              "status": "COMPROMISED",
+              "effectiveAt": "2026-09-02T00:00:00.000Z",
+              "recordedAt": "2026-09-02T00:00:00.000Z",
+              "invalidFrom": "2026-09-01T00:00:00.000Z",
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+          "keyLifecycle": false,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "KEY_COMPROMISED_AT_PROOF"
+        ]
+      }
+    },
+    {
+      "id": "contradictory-economics",
+      "description": "Valid signature with principal 0.01 and contradictory total authorized 999.99.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_contradiction_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "999.99",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "D4S6MiwoTclnVuKJHTa9FC_5IM0Yl7x2VfSRpHIPv-SWvOUZ4sAgZU7S0ixGdk6WkG0m9WjiLOjMMBjxQnLVDQ"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:81aeeacafe03673ad62468da141139c0725603c251b34d20702246b1f558cbfb",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": false,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "ECONOMIC_TOTAL_MISMATCH"
+        ]
+      }
+    },
+    {
+      "id": "currency-mismatch",
+      "description": "Valid signature whose principal and total authorized use different currencies.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_currency_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "EUR"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "CjV8-9cINGMmaZXzMEIG8tIxW2NQWmvV8xoMOLaFlWmJ2mR5tOCKZt-GBlY7C0rAg2ymj3S7OhX68Bhe82-wCw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:078471a6b08db662d8a7b01878d78d7c15cc09965311d36ab5ef02f839b4aa84",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": false,
+          "correctionLineage": true
+        },
+        "issueCodes": [
+          "ECONOMIC_CURRENCY_MISMATCH"
+        ]
+      }
+    },
+    {
+      "id": "correction",
+      "description": "Valid typed correction linked to an immutable predecessor digest.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_correction_001",
+          "issuedAt": "2026-09-01T00:01:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "correction",
+            "status": "correction_applied",
+            "occurredAt": "2026-09-01T00:01:00.000Z",
+            "sequence": 7
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SETTLED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_valid_001"
+            ]
+          },
+          "correction": {
+            "type": "correction",
+            "reasonCode": "VECTOR_CORRECTION",
+            "rootReceiptId": "mer_integrity_valid_001",
+            "predecessorReceiptId": "mer_integrity_valid_001",
+            "predecessorDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+            "amount": {
+              "amount": "0.00",
+              "currency": "USD"
+            },
+            "scope": "NOT_APPLICABLE",
+            "resolution": "APPLIED",
+            "providerReference": "sandbox:correction:001"
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:01:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "ujja8UYdSTchDy-zN71JxRl_uDBg6NUP0y0PPm3xocnVJt1Zaexu6_CxzeSv5qA-tkDtRKKMaoM5Po5ICBNdCQ"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "predecessorEnvelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:3bf3f4430628fdda6ded004f0a1c5ee282e1ff0644e24415518f9e5a1add5555",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": []
+      }
+    },
+    {
+      "id": "refund-correction",
+      "description": "Valid full-refund correction with resolvable predecessor identity and digest.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_refund_001",
+          "issuedAt": "2026-09-01T00:01:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "refund",
+            "status": "refund_applied",
+            "occurredAt": "2026-09-01T00:01:00.000Z",
+            "sequence": 7
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "REFUNDED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_valid_001"
+            ]
+          },
+          "correction": {
+            "type": "refund",
+            "reasonCode": "VECTOR_REFUND",
+            "rootReceiptId": "mer_integrity_valid_001",
+            "predecessorReceiptId": "mer_integrity_valid_001",
+            "predecessorDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+            "amount": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "scope": "FULL",
+            "resolution": "APPLIED",
+            "providerReference": "sandbox:refund:001"
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:01:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "2T9sZtecqwCZN1CcL1WLkoL_7RrO1L0FW7CV3hRjtsTyo7YdimlGJ6ZBcLTHONcFpTftkeslA_3GEQkeo0xZBg"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "predecessorEnvelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:d8c1063867daa5de42e89db5272ff2e99e41d9582c6494c682de04a922033f1d",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": []
+      }
+    },
+    {
+      "id": "reversal-correction",
+      "description": "Valid reversal correction preserving the original receipt.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_reversal_001",
+          "issuedAt": "2026-09-01T00:01:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "reversal",
+            "status": "reversal_applied",
+            "occurredAt": "2026-09-01T00:01:00.000Z",
+            "sequence": 7
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "REVERSED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_valid_001"
+            ]
+          },
+          "correction": {
+            "type": "reversal",
+            "reasonCode": "VECTOR_REVERSAL",
+            "rootReceiptId": "mer_integrity_valid_001",
+            "predecessorReceiptId": "mer_integrity_valid_001",
+            "predecessorDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+            "amount": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "scope": "FULL",
+            "resolution": "APPLIED",
+            "providerReference": "sandbox:reversal:001"
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:01:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "qGimW8yFYuyS8Wqzcw59ygIp2zeINJ_t6xGILk6yXXfXZz_CsJfdCw9Vy7eBCcTCPKGSOHHpJ_1iOJQuLuSGCw"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "predecessorEnvelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:c3d384ae206af8dbf1e692e7dabc61e50d1de036fd1255530b13c941c3cfb06e",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": []
+      }
+    },
+    {
+      "id": "dispute-correction",
+      "description": "Valid open-dispute correction distinct from refund and reversal.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_dispute_001",
+          "issuedAt": "2026-09-01T00:01:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "dispute",
+            "status": "under_review",
+            "occurredAt": "2026-09-01T00:01:00.000Z",
+            "sequence": 7
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "DISPUTED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_valid_001"
+            ]
+          },
+          "correction": {
+            "type": "dispute",
+            "reasonCode": "VECTOR_DISPUTE",
+            "rootReceiptId": "mer_integrity_valid_001",
+            "predecessorReceiptId": "mer_integrity_valid_001",
+            "predecessorDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+            "amount": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "scope": "FULL",
+            "resolution": "OPEN",
+            "providerReference": "sandbox:dispute:001"
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:01:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "oD2eq8FTXTcGotCLfUEbwZD0zIVe39IIgblCFeTPvtBjyqJrIVLyna6vZZThMkG90i6cy988O7OGEU3Za3x2Ag"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "predecessorEnvelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "expected": {
+        "valid": true,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:f8b94f2cee7af3169edba66bb93f07edab996ef54afd53d82d4e7634b1b196da",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": true
+        },
+        "issueCodes": []
+      }
+    },
+    {
+      "id": "broken-lineage",
+      "description": "Valid signature with a self-referential correction predecessor.",
+      "envelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_refund_001",
+          "issuedAt": "2026-09-01T00:01:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "refund",
+            "status": "refund_applied",
+            "occurredAt": "2026-09-01T00:01:00.000Z",
+            "sequence": 7
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "REFUNDED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_refund_001"
+            ]
+          },
+          "correction": {
+            "type": "refund",
+            "reasonCode": "VECTOR_REFUND",
+            "rootReceiptId": "mer_integrity_valid_001",
+            "predecessorReceiptId": "mer_integrity_refund_001",
+            "predecessorDigest": "sha256:9aca2fc23eea71ff655385708c7bc5bb9cf6af3f252f405558c0370049008c19",
+            "amount": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "scope": "FULL",
+            "resolution": "APPLIED",
+            "providerReference": "sandbox:refund:001"
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:01:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "hQJmktXmIgvq2WmrP502TNTKibxJy1yh98f0WIvv_8K1y4K4ir3-DzVRPfJArc7VAZIOx1clqqzQohuxN46oBA"
+        }
+      },
+      "trustedKeys": [
+        {
+          "keyId": "axiom-sandbox-integrity-ed25519-2026-09",
+          "issuerId": "axiom-sandbox",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "publicJwk": {
+            "crv": "Ed25519",
+            "x": "BswdymeLYad6WfJqrmhqPgsM1dPXej_GhIxpB7X8A1o",
+            "kty": "OKP",
+            "kid": "axiom-sandbox-integrity-ed25519-2026-09",
+            "use": "sig",
+            "alg": "EdDSA"
+          },
+          "environment": "SANDBOX",
+          "keyLifecycle": [
+            {
+              "status": "ACTIVE",
+              "effectiveAt": "2026-09-01T00:00:00.000Z",
+              "recordedAt": "2026-09-01T00:00:00.000Z",
+              "invalidFrom": null,
+              "successorKeyId": null
+            }
+          ]
+        }
+      ],
+      "verificationTime": "2026-09-02T00:00:00.000Z",
+      "predecessorEnvelope": {
+        "receipt": {
+          "specVersion": "0.1.0-draft",
+          "receiptId": "mer_integrity_valid_001",
+          "issuedAt": "2026-09-01T00:00:00.000Z",
+          "issuer": {
+            "id": "axiom-sandbox",
+            "keyId": "axiom-sandbox-integrity-ed25519-2026-09"
+          },
+          "subject": {
+            "serviceId": "axiom.one-cent-proof",
+            "serviceVersion": "1.0.0-beta",
+            "providerId": "axiom"
+          },
+          "event": {
+            "type": "fulfillment",
+            "status": "test_fulfilled",
+            "occurredAt": "2026-09-01T00:00:00.000Z",
+            "sequence": 6
+          },
+          "economics": {
+            "payerRole": "test_requester",
+            "principal": {
+              "amount": "0.01",
+              "currency": "USD",
+              "recipientRole": "axiom_first_party_merchant"
+            },
+            "axiomRelayFee": {
+              "amount": "0.00",
+              "currency": "USD",
+              "status": "waived_first_party"
+            },
+            "totalAuthorized": {
+              "amount": "0.01",
+              "currency": "USD"
+            },
+            "settlement": "SIMULATED"
+          },
+          "evidence": {
+            "inputHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+            "resultHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+          },
+          "privacy": {
+            "intentMode": "hash_only"
+          },
+          "lineage": {
+            "previousEventIds": [
+              "mer_integrity_settlement_001"
+            ]
+          }
+        },
+        "proof": {
+          "type": "DataIntegrityProof",
+          "cryptosuite": "eddsa-jcs-2022",
+          "created": "2026-09-01T00:00:00.000Z",
+          "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-integrity-ed25519-2026-09",
+          "proofValue": "Lyku3u83OjFfOqCKYds6KGxzxPpqhp1U-rjmx0vCAKXJMxHmniv2Phts9Oc3TXQBWK2RLLsR4mF8eVDzVPg4Bw"
+        }
+      },
+      "expected": {
+        "valid": false,
+        "checks": {
+          "schema": true,
+          "supportedIssuer": true,
+          "signature": true,
+          "canonicalDigest": "sha256:0a75e036461a2f01ec5bd63e6a243af2e1fcef465b782d0dfbdb8b1744324f7e",
+          "keyLifecycle": true,
+          "proofBinding": true,
+          "economicConsistency": true,
+          "correctionLineage": false
+        },
+        "issueCodes": [
+          "CORRECTION_LINEAGE_INVALID"
+        ]
+      }
+    }
+  ]
+}

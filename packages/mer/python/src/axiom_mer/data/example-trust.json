@@ -1,0 +1,25 @@
+[
+  {
+    "keyId": "axiom-sandbox-ed25519-2026-08",
+    "issuerId": "axiom-sandbox",
+    "verificationMethod": "https://axiomrelay.io/.well-known/jwks.json#axiom-sandbox-ed25519-2026-08",
+    "publicJwk": {
+      "crv": "Ed25519",
+      "x": "XKLEHhDvcljPTEV735BKBP0Mi8tW2qRTIbaL-M3FTXQ",
+      "kty": "OKP",
+      "kid": "axiom-sandbox-ed25519-2026-08",
+      "use": "sig",
+      "alg": "EdDSA"
+    },
+    "environment": "SANDBOX",
+    "keyLifecycle": [
+      {
+        "status": "ACTIVE",
+        "effectiveAt": "2026-08-27T00:00:00.000Z",
+        "recordedAt": "2026-08-27T00:00:00.000Z",
+        "invalidFrom": null,
+        "successorKeyId": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+name: Verify MER developer kits
+on:
+  push:
+    paths: ["packages/mer/**", "tests/mer-kit-*", ".github/workflows/verify-mer.yml"]
+  pull_request:
+    paths: ["packages/mer/**", "tests/mer-kit-*", ".github/workflows/verify-mer.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Build and test the Node SDK
+        run: |
+          node --version
+          npm ci --prefix packages/mer/typescript --ignore-scripts
+          npm run build --prefix packages/mer/typescript
+          npm test --prefix packages/mer/typescript
+      - name: Install and test the Python SDK
+        run: |
+          python3 -m venv packages/mer/.venv
+          packages/mer/.venv/bin/python -m pip install cryptography==49.0.0 setuptools==82.0.1
+          packages/mer/.venv/bin/python -m pip install --no-build-isolation ./packages/mer/python
+          packages/mer/.venv/bin/python -m unittest discover -s packages/mer/python/tests
+      - name: Verify signatures and encoding across languages
+        run: node tests/mer-kit-cross-language.test.mjs
+      - name: Verify the official x402 offer and receipt example
+        run: |
+          npm ci --prefix packages/mer/examples/x402 --ignore-scripts
+          npm test --prefix packages/mer/examples/x402
