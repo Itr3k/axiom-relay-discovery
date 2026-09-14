@@ -6,6 +6,11 @@
       "contentSha256": "f900365b54b3aeee0872a4d4b4e551c779c403db44766dc01cac128bd1e019de",
       "reservedAt": "2026-09-11T00:01:28.042Z",
       "url": "https://github.com/Itr3k/axiom-relay-discovery/discussions/1"
+    },
+    "connect-free-mcp-discovery": {
+      "state": "RESERVED",
+      "contentSha256": "48a4133e542038c394ac284f1ac875dc0dd6874e1ce13c9a1d9a4be868ba3bc6",
+      "reservedAt": "2026-09-14T21:02:28.150Z"
     }
   }
 }
