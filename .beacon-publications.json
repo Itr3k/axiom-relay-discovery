@@ -12,6 +12,11 @@
       "contentSha256": "48a4133e542038c394ac284f1ac875dc0dd6874e1ce13c9a1d9a4be868ba3bc6",
       "reservedAt": "2026-09-14T21:02:28.150Z",
       "url": "https://github.com/Itr3k/axiom-relay-discovery/discussions/2"
+    },
+    "free-preflight-alongside-x402": {
+      "state": "RESERVED",
+      "contentSha256": "94a3b7f7e20a742b491f79131f18386e0b756812db54dcbed3c4b08c49c661ac",
+      "reservedAt": "2026-09-18T19:55:28.330Z"
     }
   }
 }
