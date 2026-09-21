@@ -20,9 +20,10 @@
       "url": "https://github.com/Itr3k/axiom-relay-discovery/discussions/3"
     },
     "make-operation-ids-useful-to-agents": {
-      "state": "RESERVED",
+      "state": "PUBLISHED",
       "contentSha256": "6d16e063267c3f284ae3aa01cd3f1acd164491360dc3646b722b7a832e0011af",
-      "reservedAt": "2026-09-21T21:12:59.268Z"
+      "reservedAt": "2026-09-21T21:12:59.268Z",
+      "url": "https://github.com/Itr3k/axiom-relay-discovery/discussions/4"
     }
   }
 }
