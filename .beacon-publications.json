@@ -26,9 +26,10 @@
       "url": "https://github.com/Itr3k/axiom-relay-discovery/discussions/4"
     },
     "share-a-minimal-api-reproduction": {
-      "state": "RESERVED",
+      "state": "PUBLISHED",
       "contentSha256": "bc714068b36378e8fc62a5d89c3e76ad255c967d7f82694e1fe828a6564aa8b5",
-      "reservedAt": "2026-09-25T20:43:34.191Z"
+      "reservedAt": "2026-09-25T20:43:34.191Z",
+      "url": "https://github.com/Itr3k/axiom-relay-discovery/discussions/5"
     }
   }
 }
